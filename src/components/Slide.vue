@@ -1,29 +1,31 @@
 <template>
     <div class="block">
-
+        <div class="block">
+            <el-carousel height="150px" width="100%" arrow="always">
+                <el-carousel-item v-for="item in slideList" :key="item.id">
+                    <a :href="item.linkUrl"><img :src="item.picUrl" alt=""></a>
+                </el-carousel-item>
+            </el-carousel>
+        </div>
     </div>
 </template>
 
 <script>
+  import {Carousel, CarouselItem} from 'element-ui';
   export default {
-    name: 'Slide'
+    name: 'Slide',
+    components:{
+      'el-carousel':Carousel,
+      'el-carousel-item':CarouselItem
+    },
+    props:{
+      slideList:{
+        type:Array
+      }
+    }
   }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-    .el-carousel__item h3 {
-        color: #475669;
-        font-size: 14px;
-        opacity: 0.75;
-        line-height: 150px;
-        margin: 0;
-    }
 
-    .el-carousel__item:nth-child(2n) {
-        background-color: #99a9bf;
-    }
-
-    .el-carousel__item:nth-child(2n+1) {
-        background-color: #d3dce6;
-    }
 </style>

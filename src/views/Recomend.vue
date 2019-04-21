@@ -1,7 +1,7 @@
 `
 <template>
     <div class="recomend">
-        <i-slide></i-slide>
+        <i-slide :slideList="slideList"></i-slide>
     </div>
 </template>
 
@@ -16,12 +16,13 @@
     },
     data () {
       return {
-        obj: {}
+        slideList: []
       }
     },
     mounted () {
       getRecommend().then((data) => {
-        console.log(data)
+        console.log(data);
+        this.slideList=data.data.slider
       })
     }
   }
