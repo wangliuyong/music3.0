@@ -3,7 +3,9 @@
   <div id="app">
     <Head></Head>
       <Navbar :list="list"></Navbar>
-    <router-view/>
+    <keep-alive>
+        <router-view/>
+    </keep-alive>
   </div>
 </template>
 

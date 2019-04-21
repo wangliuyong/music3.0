@@ -3,7 +3,7 @@
         <div class="block">
             <el-carousel height="150px" width="100%" arrow="always">
                 <el-carousel-item v-for="item in slideList" :key="item.id">
-                    <a :href="item.linkUrl"><img :src="item.picUrl" alt=""></a>
+                    <a :href="item.linkUrl"><img :src="item.picUrl" alt="" height="150" width="100%"></a>
                 </el-carousel-item>
             </el-carousel>
         </div>
@@ -26,6 +26,3 @@
   }
 </script>
 
-<style scoped lang="stylus" rel="stylesheet/stylus">
-
-</style>

@@ -6,24 +6,39 @@
 </template>
 
 <script>
-  import {getRecommend} from '../api/recomend'
+  import {getRecommend, getDiscList} from '../api/recomend'
   import Slide from '../components/Slide'
 
   export default {
     name: 'Recomend',
-    components:{
-      'i-slide':Slide
+    components: {
+      'i-slide': Slide
     },
-    data () {
+    data() {
       return {
         slideList: []
       }
     },
-    mounted () {
-      getRecommend().then((data) => {
-        console.log(data);
-        this.slideList=data.data.slider
-      })
+    mounted() {
+      this._getRecommend()
+      this._getDiscList()
+    },
+    methods: {
+      _getRecommend() {
+        getRecommend().then((res) => {
+          console.log(res);
+          if (res.code === 0) {
+            this.slideList = res.data.slider
+          } else {
+            console.log(res.code)
+          }
+        })
+      },
+      _getDiscList() {
+        getDiscList().then((res) => {
+          console.log(res.data);
+        })
+      }
     }
   }
 </script>
