@@ -1,4 +1,14 @@
-# music3.0
+# vue3-music
+## 技术栈
+1.vue3.0
+
+2.使用fastclick解决300ms的延迟问题
+
+3.使用jsonp进行跨域获取歌曲资源(https://github.com/webmodules/jsonp)
+
+    npm install jsonp
+
+4.
 
 ## Project setup
 ```
