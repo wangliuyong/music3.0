@@ -8,7 +8,10 @@
 
     npm install jsonp
 
-4.axios+node.js开启本地代理服务器解决接口跨域问题
+4.axios+node.js开启本地代理服务器解决接口跨域问题,开启本地服务器代理方法
+   ,本工程目录下执行
+    
+        yarn musicServe
 
 ## Project setup
 ```
