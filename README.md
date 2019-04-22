@@ -8,7 +8,7 @@
 
     npm install jsonp
 
-4.
+4.axios+node.js开启本地代理服务器解决接口跨域问题
 
 ## Project setup
 ```
