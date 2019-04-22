@@ -59,8 +59,11 @@
 <style scoped lang="stylus">
     @import '../common/stylus/variable.styl';
 .recomend
-    position: relative
+    position: fixed
+    top 88px
+    bottom 0
     z-index: -1
+    width 100%
 
 </style>
 
