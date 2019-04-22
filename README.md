@@ -12,6 +12,7 @@
    ,本工程目录下执行
     
     yarn musicServe
+5.vue-lazyload懒加载插件，实现图片的懒加载
 
 ## Project setup
 ```

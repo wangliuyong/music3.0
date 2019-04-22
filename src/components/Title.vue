@@ -26,4 +26,5 @@
         line-height 20px
         font-size $font-size-medium-x
         color: $color-theme
+        background: $color-background
 </style>

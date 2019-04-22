@@ -66,5 +66,5 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
 .scroll_wrap
-    height 100%
+    height 100px
 </style>

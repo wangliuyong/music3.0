@@ -4,10 +4,17 @@ import router from './router'
 import store from './store/store'
 import '@/common/stylus/index.styl'
 import 'element-ui/lib/theme-chalk/index.css';
+import VueLazyload from 'vue-lazyload'
 
-import ElementUI from 'element-ui';
+Vue.use(VueLazyload)
 
-Vue.use(ElementUI);
+// or with options
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: './common/image/default.png',
+  loading: './common/image/default.png',
+  attempt: 1
+})
 
 Vue.config.productionTip = false
 

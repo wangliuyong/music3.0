@@ -2,7 +2,7 @@
     <ul>
         <li class="card_wrap" v-for="item in disecList" :key="item.id">
             <div class="img_wrap">
-                <img :src="item.imgurl" alt="" width="60" height="60">
+                <img v-lazy="item.imgurl" alt="" width="60" height="60">
             </div>
             <div class="text_wrap">
                 <h1 class="name">{{item.creator.name}}</h1>
@@ -25,6 +25,8 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
     @import "../common/stylus/variable.styl"
+ul
+    background: $color-background
 .card_wrap
     display flex
     margin-bottom 5px
