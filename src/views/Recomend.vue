@@ -1,8 +1,12 @@
 <template>
     <div class="recomend">
-        <i-slide :slideList="slideList"></i-slide>
-        <i-title :text="'热门歌曲推荐'"></i-title>
-        <DisecList :disecList="disecList"></DisecList>
+        <BetterScroll :data="disecList">
+            <div>
+                <i-slide :slideList="slideList"></i-slide>
+                <i-title :text="'热门歌曲推荐'"></i-title>
+                <DisecList :disecList="disecList"></DisecList>
+            </div>
+        </BetterScroll>
     </div>
 </template>
 
@@ -11,13 +15,15 @@
   import Slide from '../components/Slide'
   import Title from '../components/Title'
   import DisecList from '../components/DisecList'
+  import BetterScroll from '../components/base/BetterScroll'
 
   export default {
     name: 'Recomend',
     components: {
       'i-slide': Slide,
       'i-title':Title,
-      DisecList
+      DisecList,
+      BetterScroll
     },
     data() {
       return {
@@ -50,7 +56,12 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
+    @import '../common/stylus/variable.styl';
+.recomend
+    position: relative
+    z-index: -1
+    background: $color-background
 
 </style>
 

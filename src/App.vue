@@ -1,8 +1,10 @@
 /* eslint-disable no-new */
 <template>
   <div id="app">
-    <Head></Head>
-      <Navbar :list="list"></Navbar>
+    <div class="wrap">
+        <Head></Head>
+        <Navbar :list="list"></Navbar>
+    </div>
     <keep-alive>
         <router-view/>
     </keep-alive>
@@ -27,13 +29,15 @@ export default {
 </script>
 
 <style lang="stylus">
+    @import './common/stylus/variable.styl'
 #app
   font-family 'Avenir', Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
-
+  .wrap
+    background $color-background
 #nav
   padding 30px
   a

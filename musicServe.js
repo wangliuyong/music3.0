@@ -29,12 +29,7 @@ var server = http.createServer(function (request, response) {
       },
       params: query
     }).then((res) => {
-
-      response.statusCode = 200;
-      response.setHeader('Content-Type', 'text/html;charset=utf-8');
-      response.setHeader('Access-Control-Allow-Origin', '*');
-      response.write(JSON.stringify(res.data));
-      response.end();
+      setResponse(response,200,JSON.stringify(res.data))
     }).catch((e) => {
       console.log(e)
     })
@@ -58,11 +53,7 @@ var server = http.createServer(function (request, response) {
           ret = JSON.parse(matches[1])
         }
       }
-      response.statusCode = 200;
-      response.setHeader('Content-Type', 'text/html;charset=utf-8');
-      response.setHeader('Access-Control-Allow-Origin', '*');
-      response.write(JSON.stringify(ret));
-      response.end();
+      setResponse(response,200,JSON.stringify(ret))
     }).catch((e) => {
       console.log(e)
     })
@@ -84,11 +75,7 @@ var server = http.createServer(function (request, response) {
           ret = JSON.parse(matches[1])
         }
       }
-      response.statusCode = 200;
-      response.setHeader('Content-Type', 'text/html;charset=utf-8');
-      response.setHeader('Access-Control-Allow-Origin', '*');
-      response.write(JSON.stringify(ret));
-      response.end();
+      setResponse(response,200,JSON.stringify(ret))
     }).catch((e) => {
       console.log(e)
     })
@@ -102,11 +89,7 @@ var server = http.createServer(function (request, response) {
         'Content-type': 'application/x-www-form-urlencoded'
       }
     }).then((res) => {
-      response.statusCode = 200;
-      response.setHeader('Content-Type', 'text/html;charset=utf-8');
-      response.setHeader('Access-Control-Allow-Origin', '*');
-      response.write(JSON.stringify(res.data));
-      response.end();
+      setResponse(response,200,JSON.stringify(res.data))
     }).catch((e) => {
       console.log(e)
     })
@@ -120,23 +103,25 @@ var server = http.createServer(function (request, response) {
       },
       params: query
     }).then((res) => {
-      response.statusCode = 200;
-      response.setHeader('Content-Type', 'text/html;charset=utf-8');
-      response.setHeader('Access-Control-Allow-Origin', '*');
-      response.write(JSON.stringify(res.data));
-      response.end();
+      setResponse(response,200,JSON.stringify(res.data))
     }).catch((e) => {
       console.log(e)
     })
 
   }else {
-    response.statusCode = 404
-    response.setHeader('Content-Type', 'text/html;charset=utf-8');
-    response.setHeader('Access-Control-Allow-Origin', '*');
-    response.write('响应失败')
-    response.end()
+    setResponse(response,404,'响应失败')
   }
 })
 
 server.listen(port)
-console.log('监听 ' + port + ' 成功\n请用浏览器打开 http://localhost:' + port)
+console.log('代理服务器开启成功： http://localhost:' + port)
+
+
+//设置响应内容
+function setResponse(response,status=200,write=''){
+  response.statusCode = status;
+  response.setHeader('Content-Type', 'text/html;charset=utf-8');
+  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.write(write)
+  response.end()
+}

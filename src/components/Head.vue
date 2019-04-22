@@ -28,6 +28,7 @@ export default {
     width: 100%
     font-size $font-size-medium
     color: $color-theme
+    background: $color-background
     h1
         flex-basis 300px
         display flex
