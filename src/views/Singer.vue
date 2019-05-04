@@ -1,7 +1,7 @@
 <template>
     <div class="singer">
         <BetterScroll :data="singerList" ref="betterScroll" :listerScroll="listerScroll" @scroll="scroll" :propType="3">
-            <div >
+            <div>
                 <SingerList>
                     <ul class="singerList_wrap">
                         <li v-for="item in singerList" :key="item.id" ref="singerItem">
@@ -15,10 +15,8 @@
                         </li>
                     </ul>
                 </SingerList>
-
             </div>
         </BetterScroll>
-
         <div class="list-wrap" @touchstart="onTouchStart" @touchmove="onTouchMove">
             <List :list="getList" :currentIndex="currentIndex"></List>
         </div>
