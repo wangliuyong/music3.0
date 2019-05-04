@@ -1,25 +1,30 @@
 <template>
-    <div class="singer">
-        <BetterScroll :data="singerList" ref="betterScroll" :listerScroll="listerScroll" @scroll="scroll" :propType="3">
-            <div>
-                <SingerList>
-                    <ul class="singerList_wrap">
-                        <li v-for="item in singerList" :key="item.id" ref="singerItem">
-                            <h1 class="title_name">{{item.title}}</h1>
-                            <ul class="singerList_item">
-                                <li v-for="(i,index) in item.item" :key="i.id" class="item_wrap" :data-index="index">
-                                    <img v-lazy="i.avatar" alt="">
-                                    <span class="text">{{i.name}}</span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </SingerList>
+    <div>
+        <div class="singer">
+            <BetterScroll :data="singerList" ref="betterScroll" :listerScroll="listerScroll" @scroll="scroll" :propType="3">
+                <div>
+                    <SingerList>
+                        <ul class="singerList_wrap">
+                            <li v-for="item in singerList" :key="item.id" ref="singerItem">
+                                <h1 class="title_name">{{item.title}}</h1>
+                                <ul class="singerList_item">
+                                    <li v-for="(i,index) in item.item" :key="i.id" class="item_wrap" :data-index="index" @click="selectItem(i)">
+                                        <img v-lazy="i.avatar" alt="">
+                                        <span class="text">{{i.name}}</span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </SingerList>
+                </div>
+            </BetterScroll>
+            <div class="list-wrap" @touchstart="onTouchStart" @touchmove="onTouchMove">
+                <List :list="getList" :currentIndex="currentIndex"></List>
             </div>
-        </BetterScroll>
-        <div class="list-wrap" @touchstart="onTouchStart" @touchmove="onTouchMove">
-            <List :list="getList" :currentIndex="currentIndex"></List>
         </div>
+        <keep-alive>
+            <router-view/>
+        </keep-alive>
     </div>
 </template>
 
@@ -59,6 +64,11 @@
       }
     },
     methods: {
+      selectItem(singer){
+        this.$router.push({
+          path:`/singer/${singer.id}`
+        })
+      },
       onTouchStart(e){
         let index=parseInt(getData(e.target,'data-index')||0)
         this.currentIndex=index
@@ -82,7 +92,6 @@
         getSingerList().then((res) => {
           if (res.code === ERR_OK) {
             this.singerList = this._normalSinger(res.data.list)
-            //console.log(this.singerList);
           }
         })
       },
@@ -97,11 +106,11 @@
         //对数据按字母进行分类
         list.forEach((item, index) => {
           if (index < SHOW_LENGTH) {
-            //console.log(item);
             map.hot.item.push(new Singer({
               id: item.Fsinger_mid,
               name: item.Fsinger_name
             }))
+            //console.log('map',map);
           }
           let key = item.Findex
           if (!map[key]) {
@@ -115,7 +124,7 @@
             name: item.Fsinger_name
           }))
         })
-        //console.log(map)
+
         //获取有序的数据列表
         let hot = []
         let ret = []
