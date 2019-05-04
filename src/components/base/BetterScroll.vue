@@ -32,10 +32,15 @@
         this._initScroll()
       },300)
     },
+    destroyed(){
+      if(this.timer){
+        clearTimeout(this.timer)
+      }
+    },
     methods: {
       _initScroll() {
         if (this.$refs.scroll_wrap) {
-          console.log(this.$refs.scroll_wrap);
+          //console.log(this.$refs.scroll_wrap);
           this.scroll = new BScroll(this.$refs.scroll_wrap, {
             propType: this.propType,
             click: this.click
@@ -52,6 +57,12 @@
       },
       refresh() {
         this.scroll & this.scroll.refresh()
+      },
+      scrollTo(){
+        this.scroll & this.scroll.scrollTo.apply(this.scroll,arguments)
+      },
+      scrollToElement(){
+        this.scroll & this.scroll.scrollToElement.apply(this.scroll,arguments)
       }
     },
     watch: {
