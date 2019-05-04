@@ -20,6 +20,10 @@
       click: {
         type: Boolean,
         default: true
+      },
+      listerScroll:{
+        type: Boolean,
+        default:false
       }
 
     },
@@ -39,12 +43,20 @@
     },
     methods: {
       _initScroll() {
+
         if (this.$refs.scroll_wrap) {
           //console.log(this.$refs.scroll_wrap);
           this.scroll = new BScroll(this.$refs.scroll_wrap, {
             propType: this.propType,
             click: this.click
           })
+
+          if(this.listerScroll){
+            let that=this
+            this.scroll.on('scroll',(e)=>{
+                that.$emit('scroll',e)
+            })
+          }
         } else {
           return
         }

@@ -1,7 +1,7 @@
 <template>
     <div class="singer">
-        <BetterScroll :data="singerList" ref="betterScroll">
-            <div @touchstart="touchList">
+        <BetterScroll :data="singerList" ref="betterScroll" :listerScroll="listerScroll" @scroll="scroll" :propType="3">
+            <div >
                 <SingerList>
                     <ul class="singerList_wrap">
                         <li v-for="item in singerList" :key="item.id" ref="singerItem">
@@ -18,8 +18,9 @@
 
             </div>
         </BetterScroll>
-        <div class="list-wrap" @touchstart="touchList">
-            <List :list="getList"></List>
+
+        <div class="list-wrap" @touchstart="onTouchStart" @touchmove="onTouchMove">
+            <List :list="getList" :currentIndex="currentIndex"></List>
         </div>
     </div>
 </template>
@@ -35,11 +36,17 @@
 
   const HOT_NAME = '热门'
   const SHOW_LENGTH = 10
+  const ANCHOR_HEIGHT=20
   export default {
+    created(){
+      this.touch={},
+        this.listerScroll=true
+    },
     name: 'Singer',
     data() {
       return {
-        singerList: []
+        singerList: [],
+        currentIndex:0
       }
     },
     components: {SingerList, BetterScroll,List},
@@ -54,10 +61,23 @@
       }
     },
     methods: {
-      touchList(e){
-        let index=getData(e.target,'data-index')
+      onTouchStart(e){
+        let index=parseInt(getData(e.target,'data-index')||0)
+        this.currentIndex=index
+        this.touch.anchorIndex=index
         this.$refs.betterScroll.scrollToElement(this.$refs.singerItem[index],0)
+        this.touch.y1=e.touches[0].pageY
         //this.$refs.betterScroll.scrollTo(index)
+      },
+      onTouchMove(e){
+        this.touch.y2=e.touches[0].pageY
+        let detal=Math.floor((this.touch.y2-this.touch.y1)/ANCHOR_HEIGHT)
+        let index= parseInt(this.touch.anchorIndex)+detal
+        this.currentIndex=index
+        this.$refs.betterScroll.scrollToElement(this.$refs.singerItem[index],0)
+      },
+      scroll(e){
+        console.log('singer',e);
       },
       //获取歌手列表
       _getSingerList() {

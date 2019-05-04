@@ -7,23 +7,19 @@
 <script>
   export default {
     name: "List",
-    data(){
-      return {
-        currentIndex:0
-      }
-    },
     props:{
       list:{
         type:Array
+      },
+      currentIndex:{
+        type:Number,
+        default:0
       }
     },
     mounted() {
 
     },
     methods:{
-      clickList(){
-        console.log(2222);
-      }
     }
   }
 </script>
