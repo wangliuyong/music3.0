@@ -23,15 +23,16 @@
             </div>
         </div>
         <transition name="slide">
-            <keep-alive>
+
                 <router-view/>
-            </keep-alive>
+
         </transition>
     </div>
 </template>
 
 <script>
   import {getSingerList} from '../api/singer'
+  import {mapMutations} from 'vuex'
   import SingerList from '../components/base/SingerList'
   import BetterScroll from '../components/base/BetterScroll'
   import {ERR_OK} from '../api/config'
@@ -67,10 +68,12 @@
 
     },
     methods: {
+      ...mapMutations(["SET_SINGER"]),
       selectItem(singer){
         this.$router.push({
           path:`/singer/${singer.id}`
         })
+        this.SET_SINGER({singer})
       },
       onTouchStart(e){
         let index=parseInt(getData(e.target,'data-index')||0)

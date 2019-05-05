@@ -8,15 +8,15 @@ const getters={
 }
 //同步修改放在mutations里
 const mutations={
-  getSinger(state,payload){
+  SET_SINGER(state,payload){
     state.singer=payload.singer;
   }
 }
 //异步修改放在actions里
 const actions={
-  getSingerDetailById({commit},{singerid}){
+  SET_SINGER({commit},{singerid}){
     return getSingerDetail(singerid).then((res)=>{
-      commit('getSinger',{singer:res.data});
+      commit('SET_SINGER',{singer:res.data});
     })
   }
 }
