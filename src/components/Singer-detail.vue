@@ -1,21 +1,23 @@
 <template>
-<div class="singer-detail">
-
-</div>
+    <div class="singer-detail">
+        <button @click="getData">vuex</button>
+    </div>
 </template>
 
 <script>
-    import {getSingerDetail} from '../api/singer';
+    import {mapActions,mapGetters ,mapMutations} from 'vuex'
   export default {
     name: "Singer-detail",
     mounted() {
-      this._getSingerDetail('004AlfUb0cVkN1')
+      this.getSingerDetailById({singerid:'002J4UUk29y8BY'})
+    },
+    computed:{
+        ...mapGetters(['singer'])
     },
     methods:{
-      _getSingerDetail(singerId){
-        getSingerDetail(singerId).then((e)=>{
-          console.log(e);
-        })
+      ...mapActions(["getSingerDetailById"]),
+      getData(){
+        console.log(this.singer);
       }
     }
   }

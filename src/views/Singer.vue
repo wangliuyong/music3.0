@@ -63,7 +63,8 @@
         return this.singerList.map((item)=>{
           return item.title.substring(0,1)
         })
-      }
+      },
+
     },
     methods: {
       selectItem(singer){
