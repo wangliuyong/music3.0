@@ -5,8 +5,19 @@
 </template>
 
 <script>
+    import {getSingerDetail} from '../api/singer';
   export default {
-    name: "Singer-detail"
+    name: "Singer-detail",
+    mounted() {
+      this._getSingerDetail('004AlfUb0cVkN1')
+    },
+    methods:{
+      _getSingerDetail(singerId){
+        getSingerDetail(singerId).then((e)=>{
+          console.log(e);
+        })
+      }
+    }
   }
 </script>
 

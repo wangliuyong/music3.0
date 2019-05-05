@@ -22,9 +22,11 @@
                 <List :list="getList" :currentIndex="currentIndex"></List>
             </div>
         </div>
-        <keep-alive>
-            <router-view/>
-        </keep-alive>
+        <transition name="slide">
+            <keep-alive>
+                <router-view/>
+            </keep-alive>
+        </transition>
     </div>
 </template>
 
@@ -157,4 +159,11 @@
         position fixed
         right 0
         top 175px
+
+.slide-enter-active, .slide-leave-active {
+    transition: all 1s;
+}
+.slide-enter, .slide-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    transform translate3d(100%,0,0)
+}
 </style>
